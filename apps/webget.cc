@@ -11,8 +11,26 @@ using namespace std;
 namespace {
 void get_URL( const string& host, const string& path )
 {
-  debug( "Function called: get_URL( \"{}\", \"{}\" )", host, path );
-  debug( "get_URL() function not yet implemented" );
+  // debug( "Function called: get_URL( \"{}\", \"{}\" )", host, path );
+  // debug( "get_URL() function not yet implemented" );
+  /*
+  - Address 类 ：可以通过主机名和服务名构造地址（如 Address(host, "http") ）
+  - TCPSocket 类 ：可以创建 TCP 套接字并连接到服务器
+  - FileDescriptor 类 ：提供 read() 和 write_all() 方法，以及 eof() 检查
+  */
+  TCPSocket socket;
+  Address address(host, "http");
+  socket.connect(address);
+  string request = "GET " + path + " HTTP/1.1\r\n";
+  request += "Host: " + host + "\r\n";
+  request += "Connection: close\r\n";
+  request += "\r\n";
+  socket.write_all(request);
+  string buffer;
+  while(!socket.eof()){
+    socket.read(buffer);
+    cout<<buffer;
+  }
 }
 } // namespace
 
@@ -47,3 +65,4 @@ int main( int argc, char* argv[] )
 
   return EXIT_SUCCESS;
 }
+

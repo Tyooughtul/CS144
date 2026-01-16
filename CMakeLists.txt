@@ -1,5 +1,6 @@
 cmake_minimum_required(VERSION 3.24.2)
-
+set(CMAKE_C_COMPILER "$ENV{HOME}/gcc-14.2.0/bin/gcc" CACHE PATH "" FORCE)
+set(CMAKE_CXX_COMPILER "$ENV{HOME}/gcc-14.2.0/bin/g++" CACHE PATH "" FORCE)
 project(minnow CXX)
 
 if(${CMAKE_GENERATOR} STREQUAL "Unix Makefiles")
