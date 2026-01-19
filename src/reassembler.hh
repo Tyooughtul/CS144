@@ -13,6 +13,8 @@ public:
 
   uint64_t count_bytes_pending() const;
 
+  uint64_t first_unassembled_index() const { return next_expected_index_; }
+
   Reader& reader() { return output_.reader(); }
   const Reader& reader() const { return output_.reader(); }
 
